@@ -1,13 +1,23 @@
+using AuthService.API.Extensions;
+using AuthService.API.Services;
+using AuthService.Domain.IRepositories;
+using AuthService.Persistense;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddAuthorization();
-builder.Services.AddAuthentication();
+builder
+    .AddBearerAuthentitication()
+    .AddScopedServices()
+    .AddOptions();
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Auth Service", Version = "v1" });
 });
+
+
 var app = builder.Build();
 
 app.UseSwagger();

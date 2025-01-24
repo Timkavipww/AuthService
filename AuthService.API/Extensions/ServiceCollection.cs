@@ -1,3 +1,9 @@
+using AuthService.API.Services;
+using AuthService.Domain.Entities;
+using AuthService.Domain.IRepositories;
+using AuthService.Domain.Options;
+using AuthService.Persistense;
+
 namespace AuthService.API.Extensions;
 
 public static class ServiceCollection
@@ -39,6 +45,18 @@ public static class ServiceCollection
         });
 
 
+        return builder;
+    }
+    
+    public static WebApplicationBuilder AddScopedServices(this WebApplicationBuilder builder)
+    {
+        builder.Services.AddScoped<IAccountService, AccountService>();
+        builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+        return builder;
+    }
+    public static WebApplicationBuilder AddOptions(this WebApplicationBuilder builder)
+    {
+        builder.Services.Configure<AuthOptions>(builder.Configuration.GetSection("Authentication"));
         return builder;
     }
 }
