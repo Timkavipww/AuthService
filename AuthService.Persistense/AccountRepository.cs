@@ -1,3 +1,6 @@
+using AuthService.Domain.Entities;
+using AuthService.Domain.IRepositories;
+
 namespace AuthService.Persistense;
 
 public class AccountRepository : IAccountRepository

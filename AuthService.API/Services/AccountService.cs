@@ -1,4 +1,5 @@
 using AuthService.API.Extensions.DTOs;
+using AuthService.Application.Interfaces;
 using AuthService.Domain.Entities;
 using AuthService.Domain.IRepositories;
 

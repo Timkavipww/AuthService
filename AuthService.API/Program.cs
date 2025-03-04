@@ -2,15 +2,17 @@ using AuthService.API.Extensions;
 using AuthService.API.Services;
 using AuthService.Domain.IRepositories;
 using AuthService.Persistense;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder
-    .AddBearerAuthentitication()
-    .AddScopedServices()
-    .AddOptions();
+    .AddBearerAuthentitication();
+     //.AddScopedServices()
+     //.AddOptions();
+
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -34,8 +36,7 @@ app.UseHttpsRedirection();
 app.UseRouting();
 //AUTH
 app.UseAuthorization();
-app.UseAuthorization();
-
+app.UseAuthentication();
 //ROUTING
 app.MapControllers();
 
